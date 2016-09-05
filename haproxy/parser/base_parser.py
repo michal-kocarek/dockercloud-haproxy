@@ -188,3 +188,7 @@ class EnvParser(object):
     @staticmethod
     def parse_extra_route_settings(value):
         return value
+
+    @staticmethod
+    def parse_http_basic_auth_disabled(value):
+        return value

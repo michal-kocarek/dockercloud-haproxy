@@ -128,8 +128,8 @@ Similar to using legacy links, here list some differences that you need to notic
 Once the stack is up, you can scale the web service using `docker-compose scale web=3`. dockercloud/haproxy will automatically reload its configuration.
 
 #### Running with Docker Compose v2 and Swarm (using envvar)
-When using links like previous section, the Docker Swarm scheduler can be too restrictive. 
-Even with overlay network, swarm (As of 1.1.0) will attempt to schedule haproxy on the same node as the linked service due to legacy links behavior. 
+When using links like previous section, the Docker Swarm scheduler can be too restrictive.
+Even with overlay network, swarm (As of 1.1.0) will attempt to schedule haproxy on the same node as the linked service due to legacy links behavior.
 This can cause unwanted scheduling patterns or errors such as "Unable to find a node fulfilling all dependencies..."
 
 Since Compose V2 allows discovery through the service names, Dockercloud haproxy only needs the links to indentify which service should be load balanced.
@@ -215,6 +215,7 @@ Settings here can overwrite the settings in HAProxy, which are only applied to t
 |GZIP_COMPRESSION_TYPE|enable gzip compression. The value of this envvar is a list of MIME types that will be compressed, possible value: `text/html text/plain text/css`|
 |HEALTH_CHECK|set health check on each backend route, possible value: "check inter 2000 rise 2 fall 3". See:[HAProxy:check](https://cbonte.github.io/haproxy-dconv/configuration-1.5.html#5.2-check)|
 |HSTS_MAX_AGE|enable HSTS. It is an integer representing the max age of HSTS in seconds, possible value: `31536000`|
+|HTTP_BASIC_AUTH_DISABLED|disable HTTP Basic Auth for this application service if global HTTP_BASIC_AUTH is set| 
 |HTTP_CHECK|enable HTTP protocol to check on the servers health, possible value: "OPTIONS * HTTP/1.1\r\nHost:\ www". See:[HAProxy:httpchk](https://cbonte.github.io/haproxy-dconv/configuration-1.5.html#4-option%20httpchk)|
 |OPTION|comma-separated list of HAProxy `option` entries. `option` specified here will be added to related backend or listen part, and overwrite the OPTION settings in the HAProxy container|
 |SSL_CERT|ssl cert, a pem file with private key followed by public certificate, '\n'(two chars) as the line separator|
